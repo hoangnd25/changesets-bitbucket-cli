@@ -1,0 +1,8 @@
+{
+  "name": "@changesets-bitbucket/cli",
+  "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli/tree/master/packages/cli",
+  "version": "1.0.0",
+  "main": "dist/cli.cjs.js",
+  "dependencies": {
+  }
+}
