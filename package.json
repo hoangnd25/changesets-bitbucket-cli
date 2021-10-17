@@ -5,7 +5,7 @@
   "author": "Hoang Nguyen",
   "license": "MIT",
   "bin": {
-    "changesets-bitbucket": "dist/cli.js"
+    "changesets-bitbucket-cli": "cli.js"
   },
   "scripts": {
     "build": "esbuild src/index.ts --bundle  --sourcemap --platform=node --target=node12 --external:yargs --outfile=dist/cli.js",
@@ -14,7 +14,7 @@
     "lint:fix": "yarn lint --fix",
     "test": "jest --passWithNoTests",
     "clean": "rm -rf node_modules && rm -rf dist",
-    "cli": "node dist/cli.js"
+    "cli": "node cli.js"
   },
   "dependencies": {
     "yargs": "^17.2.1"
