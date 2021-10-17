@@ -3,7 +3,9 @@
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli/tree/master/packages/cli",
   "version": "0.0.2",
   "license": "MIT",
-  "bin": "cli.js",
+  "bin": {
+    "changesets-bitbucket": "cli.js"
+  },
   "main": "dist/cli.cjs.js",
   "scripts": {
     "cli": "node cli.js"
