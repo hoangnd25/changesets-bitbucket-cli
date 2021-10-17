@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.7
+
+### Patch Changes
+
+- ae9d6b9: use cjs for modules
+
 ## 0.0.6
 
 ### Patch Changes
