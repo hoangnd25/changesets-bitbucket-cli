@@ -1,5 +1,12 @@
 # @changesets-bitbucket/cli
 
+## 0.0.14
+
+### Patch Changes
+
+- 9e245da: setup git user
+- 567f4f6: allow skipping pr
+
 ## 0.0.12
 
 ### Patch Changes
