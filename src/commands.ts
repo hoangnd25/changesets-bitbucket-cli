@@ -90,6 +90,7 @@ export const runVersion = async ({
   const versionBranch = `changeset-release/${branch}`;
   const { preState } = await readChangesetState(cwd);
 
+  await gitUtils.setupUser();
   await gitUtils.switchToMaybeExistingBranch(versionBranch);
   await gitUtils.reset(process.env.BITBUCKET_COMMIT || '');
 
