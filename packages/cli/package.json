@@ -1,7 +1,7 @@
 {
   "name": "@changesets-bitbucket/cli",
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli/tree/master/packages/cli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "bin": {
     "changesets-bitbucket": "cli.js"
