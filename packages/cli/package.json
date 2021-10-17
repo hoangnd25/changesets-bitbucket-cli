@@ -1,11 +1,12 @@
 {
   "name": "@changesets-bitbucket/cli",
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli/tree/master/packages/cli",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "license": "MIT",
   "bin": {
     "changesets-bitbucket": "cli.js"
   },
+  "module": "dist/cli.esm.js",
   "main": "dist/cli.cjs.js",
   "scripts": {
     "cli": "node cli.js"
