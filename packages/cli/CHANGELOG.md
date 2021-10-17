@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.5
+
+### Patch Changes
+
+- f6304dd: target node 10
+
 ## 0.0.4
 
 ### Patch Changes
