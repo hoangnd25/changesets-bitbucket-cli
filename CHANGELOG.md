@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.11
+
+### Patch Changes
+
+- 68a5819: show command output
+
 ## 0.0.10
 
 ### Patch Changes
