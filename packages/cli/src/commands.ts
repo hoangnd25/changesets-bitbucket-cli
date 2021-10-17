@@ -126,7 +126,7 @@ When you're ready to do a release, you can merge this and ${
 If you're not ready to do a release yet, that's fine, whenever you add more changesets to ${branch}, this PR will be updated.
 ${preStateMessage}
 # Releases
-  ` +
+` +
       (
         await Promise.all(
           changedPackages.map(async pkg => {
@@ -161,8 +161,6 @@ ${preStateMessage}
     branch: versionBranch,
     destinationBranch: branch,
   });
-
-  console.error(await prBodyPromise);
 
   if (existingPr) {
     await updatePullRequest({
