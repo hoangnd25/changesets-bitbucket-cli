@@ -1,6 +1,6 @@
 {
   "name": "@changesets-bitbucket/root",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli",
   "author": "Hoang Nguyen",
   "license": "MIT",
