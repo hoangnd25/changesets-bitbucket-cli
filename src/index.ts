@@ -6,7 +6,7 @@ import { setupNpmAuth } from './npmAuth';
 import { runPublish, runVersion } from './commands';
 import { cliArgs } from './cliArgs';
 
-const { publishCommand, versionCommand, commitMessage, prTitle, cwd } = cliArgs();
+const { publishCommand, versionCommand, commitMessage, prTitle, noPr, cwd } = cliArgs();
 
 (async () => {
   const { changesets } = await readChangesetState(cwd);
@@ -36,6 +36,7 @@ const { publishCommand, versionCommand, commitMessage, prTitle, cwd } = cliArgs(
       prTitle,
       commitMessage,
       hasPublishCommand,
+      createPr: !noPr,
     });
     return;
   }

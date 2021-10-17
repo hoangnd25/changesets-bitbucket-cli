@@ -78,6 +78,7 @@ interface VersionOptions {
   prTitle?: string;
   commitMessage?: string;
   hasPublishCommand?: boolean;
+  createPr?: boolean;
 }
 export const runVersion = async ({
   command,
@@ -85,14 +86,18 @@ export const runVersion = async ({
   prTitle = 'Version Packages',
   commitMessage = 'Version Packages',
   hasPublishCommand = false,
+  createPr = true,
 }: VersionOptions) => {
   const branch = process.env.BITBUCKET_BRANCH || 'master';
   const versionBranch = `changeset-release/${branch}`;
   const { preState } = await readChangesetState(cwd);
 
   await gitUtils.setupUser();
-  await gitUtils.switchToMaybeExistingBranch(versionBranch);
-  await gitUtils.reset(process.env.BITBUCKET_COMMIT || '');
+
+  if (createPr) {
+    await gitUtils.switchToMaybeExistingBranch(versionBranch);
+    await gitUtils.reset(process.env.BITBUCKET_COMMIT || '');
+  }
 
   const versionsByDirectory = await getVersionsByDirectory(cwd);
 
@@ -159,13 +164,18 @@ ${preStateMessage}
   })();
 
   const finalPrTitle = `${prTitle}${preState ? ` (${preState.tag})` : ''}`;
+  const finalCommitMessage = `${commitMessage}${preState ? ` (${preState.tag})` : ''}`;
 
   if (!(await gitUtils.checkIfClean())) {
-    const finalCommitMessage = `${commitMessage}${preState ? ` (${preState.tag})` : ''}`;
     await gitUtils.commitAll(finalCommitMessage);
   }
 
-  await gitUtils.push(versionBranch, { force: true });
+  if (createPr) {
+    await gitUtils.push(versionBranch, { force: true });
+  } else {
+    await gitUtils.push(branch);
+    return;
+  }
 
   const existingPr = await getPullRequest({
     branch: versionBranch,
