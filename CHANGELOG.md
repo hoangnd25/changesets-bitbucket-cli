@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.18
+
+### Patch Changes
+
+- d6c69fb: remove extra space
+
 ## 0.0.17
 
 ### Patch Changes
