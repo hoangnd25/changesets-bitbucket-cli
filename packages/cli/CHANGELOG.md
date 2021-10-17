@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.8
+
+### Patch Changes
+
+- 6d22b21: remove pr content log
+
 ## 0.0.7
 
 ### Patch Changes
