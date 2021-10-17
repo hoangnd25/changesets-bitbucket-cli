@@ -41,6 +41,5 @@ const { publishCommand, versionCommand, commitMessage, prTitle, noPr, cwd } = cl
     return;
   }
 })().catch(err => {
-  console.error(err);
   process.exit(1);
 });

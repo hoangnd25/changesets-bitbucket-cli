@@ -24,7 +24,8 @@ export const runPublish = async ({ command, cwd = process.cwd() }: PublishOption
 
   const execCommand = exec(publishCommand, publishArgs, { cwd });
   execCommand.stdout?.pipe(process.stdout);
-  const changesetPublishOutput = await execCommand;
+  execCommand.stderr?.pipe(process.stderr);
+  const changesetPublishOutput = await execCommand.catch(err => console.error(err.message));
 
   await gitUtils.pushTags();
 
@@ -69,6 +70,18 @@ export const runPublish = async ({ command, cwd = process.cwd() }: PublishOption
     }
   }
 
+  if (releasedPackages.length) {
+    // eslint-disable-next-line no-console
+    console.log('Released packages:');
+    // eslint-disable-next-line no-console
+    console.table(
+      releasedPackages.map(pkg => ({
+        name: pkg.packageJson.name,
+        version: pkg.packageJson.version,
+      })),
+    );
+  }
+
   return;
 };
 
@@ -106,7 +119,8 @@ export const runVersion = async ({
 
     const execCommand = exec(versionCommand, versionArgs, { cwd });
     execCommand.stdout?.pipe(process.stdout);
-    await execCommand;
+    execCommand.stderr?.pipe(process.stderr);
+    await execCommand.catch(err => console.error(err.message));
   } else {
     const changesetsCliPkgJson = requireChangesetsCliPkgJson(cwd);
     const cmd = semver.lt(changesetsCliPkgJson.version, '2.0.0') ? 'bump' : 'version';
@@ -115,7 +129,8 @@ export const runVersion = async ({
       cwd,
     });
     execCommand.stdout?.pipe(process.stdout);
-    await execCommand;
+    execCommand.stderr?.pipe(process.stderr);
+    await execCommand.catch(err => console.error(err.message));
   }
 
   const changedPackages = await getChangedPackages(cwd, versionsByDirectory);
