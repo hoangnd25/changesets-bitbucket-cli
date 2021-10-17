@@ -1,5 +1,12 @@
 # @changesets-bitbucket/cli
 
+## 0.0.15
+
+### Patch Changes
+
+- 74b48fc: fix possible null
+- 5b03ca7: only show error once
+
 ## 0.0.14
 
 ### Patch Changes
