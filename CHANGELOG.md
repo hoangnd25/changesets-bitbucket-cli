@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.17
+
+### Patch Changes
+
+- eda2f23: fix no-pr flag
+
 ## 0.0.16
 
 ### Patch Changes
