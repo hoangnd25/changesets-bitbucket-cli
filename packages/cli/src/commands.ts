@@ -91,7 +91,6 @@ export const runVersion = async ({
   await gitUtils.reset(process.env.BITBUCKET_COMMIT || '');
 
   const versionsByDirectory = await getVersionsByDirectory(cwd);
-  const changedPackages = await getChangedPackages(cwd, versionsByDirectory);
 
   if (command) {
     const [versionCommand, ...versionArgs] = command.split(/\s+/);
@@ -103,6 +102,8 @@ export const runVersion = async ({
       cwd,
     });
   }
+
+  const changedPackages = await getChangedPackages(cwd, versionsByDirectory);
 
   const preStateMessage = preState
     ? `
@@ -124,7 +125,7 @@ When you're ready to do a release, you can merge this and ${
 
 If you're not ready to do a release yet, that's fine, whenever you add more changesets to ${branch}, this PR will be updated.
 ${preStateMessage}
-## Releases
+# Releases
   ` +
       (
         await Promise.all(
@@ -135,7 +136,7 @@ ${preStateMessage}
             return {
               highestLevel: entry.highestLevel,
               private: !!pkg.packageJson.private,
-              content: `### ${pkg.packageJson.name}@${pkg.packageJson.version}\n\n` + entry.content,
+              content: `## ${pkg.packageJson.name}@${pkg.packageJson.version}\n\n` + entry.content,
             };
           }),
         )
