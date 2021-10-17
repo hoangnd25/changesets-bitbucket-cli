@@ -22,7 +22,10 @@ interface PublishOptions {
 export const runPublish = async ({ command, cwd = process.cwd() }: PublishOptions) => {
   const [publishCommand, ...publishArgs] = command.split(/\s+/);
 
-  const changesetPublishOutput = await exec(publishCommand, publishArgs, { cwd });
+  const execCommand = exec(publishCommand, publishArgs, { cwd });
+  execCommand.stdout?.pipe(process.stdout);
+  const changesetPublishOutput = await execCommand;
+
   await gitUtils.pushTags();
 
   const { packages, tool } = await getPackages(cwd);
@@ -94,13 +97,19 @@ export const runVersion = async ({
 
   if (command) {
     const [versionCommand, ...versionArgs] = command.split(/\s+/);
-    await exec(versionCommand, versionArgs, { cwd });
+
+    const execCommand = exec(versionCommand, versionArgs, { cwd });
+    execCommand.stdout?.pipe(process.stdout);
+    await execCommand;
   } else {
     const changesetsCliPkgJson = requireChangesetsCliPkgJson(cwd);
     const cmd = semver.lt(changesetsCliPkgJson.version, '2.0.0') ? 'bump' : 'version';
-    await exec('node', [resolveFrom(cwd, '@changesets/cli/bin.js'), cmd], {
+
+    const execCommand = exec('node', [resolveFrom(cwd, '@changesets/cli/bin.js'), cmd], {
       cwd,
     });
+    execCommand.stdout?.pipe(process.stdout);
+    await execCommand;
   }
 
   const changedPackages = await getChangedPackages(cwd, versionsByDirectory);

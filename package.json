@@ -13,7 +13,8 @@
     "lint": "eslint --cache --color '**/*.{js,ts,tsx}'",
     "lint:fix": "yarn lint --fix",
     "test": "jest --passWithNoTests",
-    "clean": "rm -rf node_modules && rm -rf dist"
+    "clean": "rm -rf node_modules && rm -rf dist",
+    "cli": "node dist/cli.js"
   },
   "dependencies": {
     "yargs": "^17.2.1"
