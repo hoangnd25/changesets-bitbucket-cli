@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.10
+
+### Patch Changes
+
+- 20e6986: republish cli
+
 ## 0.0.9
 
 ### Patch Changes
