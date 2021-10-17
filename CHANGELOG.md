@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.16
+
+### Patch Changes
+
+- 47cd55a: add logs
+
 ## 0.0.15
 
 ### Patch Changes
