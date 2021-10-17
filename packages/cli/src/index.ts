@@ -39,4 +39,5 @@ const { publishCommand, versionCommand, commitMessage, prTitle, cwd } = cliArgs(
   }
 })().catch(err => {
   console.error(err);
+  process.exit(1);
 });
