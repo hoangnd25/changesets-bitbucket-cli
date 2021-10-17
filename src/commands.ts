@@ -20,6 +20,9 @@ interface PublishOptions {
 }
 
 export const runPublish = async ({ command, cwd = process.cwd() }: PublishOptions) => {
+  // eslint-disable-next-line no-console
+  console.log(`ℹ️ Run publish: ${command}`);
+
   const [publishCommand, ...publishArgs] = command.split(/\s+/);
 
   const execCommand = exec(publishCommand, publishArgs, { cwd });
@@ -72,7 +75,7 @@ export const runPublish = async ({ command, cwd = process.cwd() }: PublishOption
 
   if (releasedPackages.length) {
     // eslint-disable-next-line no-console
-    console.log('Released packages:');
+    console.log('🎉 Released packages:');
     // eslint-disable-next-line no-console
     console.table(
       releasedPackages.map(pkg => ({
@@ -99,8 +102,14 @@ export const runVersion = async ({
   prTitle = 'Version Packages',
   commitMessage = 'Version Packages',
   hasPublishCommand = false,
-  createPr = true,
+  createPr,
 }: VersionOptions) => {
+  // eslint-disable-next-line no-console
+  console.log(
+    `ℹ️ Run version: ${JSON.stringify({
+      createPr,
+    })}`,
+  );
   const branch = process.env.BITBUCKET_BRANCH || 'master';
   const versionBranch = `changeset-release/${branch}`;
   const { preState } = await readChangesetState(cwd);
@@ -197,20 +206,27 @@ ${preStateMessage}
     destinationBranch: branch,
   });
 
+  const prDescription = await prBodyPromise;
+
   if (existingPr) {
     await updatePullRequest({
       id: existingPr.id,
       title: finalPrTitle,
-      description: await prBodyPromise,
+      description: prDescription,
     });
   } else {
     await createPullRequest({
       title: finalPrTitle,
-      description: await prBodyPromise,
+      description: prDescription,
       branch: versionBranch,
       destinationBranch: branch,
     });
   }
+
+  // eslint-disable-next-line no-console
+  console.log('🎉 Created PR');
+  // eslint-disable-next-line no-console
+  console.log(prDescription);
 
   return;
 };

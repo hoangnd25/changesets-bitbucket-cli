@@ -16,6 +16,7 @@ const argv = yargs(hideBin(process.argv))
   .option('no-pr', {
     describe: 'If true, changes will be committed and published without PR',
     boolean: true,
+    default: false,
   })
   .option('pr-title', {
     describe: 'PR title to use for Bitbucket',
