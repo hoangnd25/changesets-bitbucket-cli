@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /* eslint-disable no-console */
 import { readChangesetState } from './utils';
 import { setupNpmAuth } from './npmAuth';

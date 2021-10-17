@@ -4,8 +4,9 @@
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli",
   "author": "Hoang Nguyen",
   "license": "MIT",
+  "main": "dist/cli.js",
   "bin": {
-    "changesets-bitbucket-cli": "cli.js"
+    "changesets-bitbucket-cli": "dist/cli.js"
   },
   "scripts": {
     "build": "esbuild src/index.ts --bundle  --sourcemap --platform=node --target=node12 --external:yargs --outfile=dist/cli.js",
@@ -14,7 +15,7 @@
     "lint:fix": "yarn lint --fix",
     "test": "jest --passWithNoTests",
     "clean": "rm -rf node_modules && rm -rf dist",
-    "cli": "node cli.js"
+    "cli": "node dist/cli.js"
   },
   "dependencies": {
     "yargs": "^17.2.1"
