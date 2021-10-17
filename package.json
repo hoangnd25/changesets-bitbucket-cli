@@ -1,5 +1,5 @@
 {
-  "name": "@changesets-bitbucket/root",
+  "name": "@changesets-bitbucket/cli",
   "version": "0.0.9",
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli",
   "author": "Hoang Nguyen",
