@@ -13,10 +13,10 @@ const argv = yargs(hideBin(process.argv))
     alias: 'vc',
     string: true,
   })
-  .option('no-pr', {
-    describe: 'If true, changes will be committed and published without PR',
+  .option('pr', {
+    describe: 'If false, changes will be committed and published without PR',
     boolean: true,
-    default: false,
+    default: true,
   })
   .option('pr-title', {
     describe: 'PR title to use for Bitbucket',
@@ -47,7 +47,7 @@ const argv = yargs(hideBin(process.argv))
 export const cliArgs = () => ({
   publishCommand: argv['publish-command'],
   versionCommand: argv['version-command'],
-  noPr: argv['no-pr'],
+  createPr: argv['pr'],
   prTitle: argv['pr-title'],
   commitMessage: argv['commit-message'],
   cwd: argv['cwd'],
