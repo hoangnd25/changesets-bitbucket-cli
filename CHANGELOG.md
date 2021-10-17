@@ -1,5 +1,11 @@
 # @changesets-bitbucket/cli
 
+## 0.0.12
+
+### Patch Changes
+
+- 9ccf7e7: add shebang to bin file
+
 ## 0.0.11
 
 ### Patch Changes
