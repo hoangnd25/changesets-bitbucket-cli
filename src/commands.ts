@@ -36,7 +36,7 @@ export const runPublish = async ({ command, cwd = process.cwd() }: PublishOption
     const newTagRegex = /New tag:\s+(@[^/]+\/[^@]+|[^/]+)@([^\s]+)/;
     const packagesByName = new Map(packages.map(x => [x.packageJson.name, x]));
 
-    for (const line of changesetPublishOutput.stdout.split('\n')) {
+    for (const line of changesetPublishOutput?.stdout?.split('\n') || []) {
       const match = line.match(newTagRegex);
       if (match === null) {
         continue;
@@ -60,7 +60,7 @@ export const runPublish = async ({ command, cwd = process.cwd() }: PublishOption
     const pkg = packages[0];
     const newTagRegex = /New tag:/;
 
-    for (const line of changesetPublishOutput.stdout.split('\n')) {
+    for (const line of changesetPublishOutput?.stdout?.split('\n') || []) {
       const match = line.match(newTagRegex);
 
       if (match) {
