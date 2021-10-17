@@ -1,7 +1,42 @@
-import yargs from 'yargs/yargs';
-import { hideBin } from 'yargs/helpers';
+/* eslint-disable no-console */
+import { readChangesetState } from './utils';
+import { setupNpmAuth } from './npmAuth';
+import { runPublish, runVersion } from './commands';
+import { cliArgs } from './cliArgs';
 
-const argv = yargs(hideBin(process.argv)).argv;
+const { publishCommand, versionCommand, commitMessage, prTitle, cwd } = cliArgs();
 
-// eslint-disable-next-line no-console
-console.log(argv);
+(async () => {
+  const { changesets } = await readChangesetState(cwd);
+
+  const hasChangesets = changesets.length !== 0;
+  const hasPublishCommand = !!publishCommand;
+
+  if (!hasChangesets && !hasPublishCommand) {
+    console.log('No changesets found');
+    return;
+  }
+
+  if (!hasChangesets && hasPublishCommand) {
+    console.log('No changesets found, attempting to publish any unpublished packages to npm');
+    setupNpmAuth();
+    await runPublish({
+      command: publishCommand,
+      cwd,
+    });
+    return;
+  }
+
+  if (hasChangesets) {
+    await runVersion({
+      command: versionCommand,
+      cwd,
+      prTitle,
+      commitMessage,
+      hasPublishCommand,
+    });
+    return;
+  }
+})().catch(err => {
+  console.error(err);
+});

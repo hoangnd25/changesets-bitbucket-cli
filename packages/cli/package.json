@@ -1,14 +1,31 @@
 {
   "name": "@changesets-bitbucket/cli",
   "repository": "https://github.com/hoangnd25/changesets-bitbucket-cli/tree/master/packages/cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "bin": "cli.js",
   "main": "dist/cli.cjs.js",
   "scripts": {
-    "cli": "node dist/cli.cjs.js"
+    "cli": "node cli.js"
   },
   "dependencies": {
+    "@babel/runtime": "^7.15.4",
+    "@changesets/pre": "^1.0.7",
+    "@changesets/read": "^0.5.0",
+    "@changesets/types": "^4.0.1",
+    "@manypkg/get-packages": "^1.1.1",
+    "axios": "^0.23.0",
+    "execa": "^5.1.1",
+    "fs-extra": "^10.0.0",
+    "mdast-util-to-string": "^3.1.0",
+    "remark-parse": "^10.0.0",
+    "remark-stringify": "^10.0.1",
+    "resolve-from": "^5.0.0",
+    "semver": "^7.3.5",
+    "unified": "^10.1.0",
     "yargs": "^17.2.1"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13"
   }
 }
