@@ -1,8 +1,15 @@
 import exec from 'execa';
+import { cliArgs } from './cliArgs';
 
-export const setupUser = async (name = 'Changesets Bot', email = 'email@changsets.bot') => {
-  await exec('git', ['config', '--global', 'user.name', `"${name}`]);
-  await exec('git', ['config', '--global', 'user.email', `"${email}"`]);
+export const setupUser = async () => {
+  const { gitUserName, gitUserEmail } = cliArgs();
+  if (gitUserName) {
+    await exec('git', ['config', '--global', 'user.name', `"${gitUserName}`]);
+  }
+
+  if (gitUserEmail) {
+    await exec('git', ['config', '--global', 'user.email', `"${gitUserEmail}"`]);
+  }
 };
 
 export const pullBranch = async (branch: string) => {

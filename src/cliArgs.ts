@@ -21,6 +21,18 @@ const argv = yargs(hideBin(process.argv))
     describe: 'Commit message to use for Bitbucket',
     string: true,
   })
+  .option('git-user-name', {
+    describe: 'Git user name',
+    string: true,
+  })
+  .option('git-user-email', {
+    describe: 'Git user name',
+    string: true,
+  })
+  .option('git-user-email', {
+    describe: 'Commit message to use for Bitbucket',
+    string: true,
+  })
   .option('cwd', {
     describe: 'Working directory to use',
     default: process.cwd(),
@@ -33,4 +45,6 @@ export const cliArgs = () => ({
   prTitle: argv['pr-title'],
   commitMessage: argv['commit-message'],
   cwd: argv['cwd'],
+  gitUserName: argv['git-user-name'],
+  gitUserEmail: argv['git-user-email'],
 });
