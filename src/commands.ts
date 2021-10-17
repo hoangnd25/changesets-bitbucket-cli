@@ -183,7 +183,7 @@ ${preStateMessage}
         .filter(x => x)
         .sort(sortTheThings)
         .map(x => x.content)
-        .join('\n ')
+        .join('\n')
     );
   })();
 
